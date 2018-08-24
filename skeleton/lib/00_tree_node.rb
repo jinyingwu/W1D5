@@ -18,7 +18,21 @@ class PolyTreeNode
     end 
   end 
   
-  def add_child
+  def add_child(child_node)
+    self.children << child_node unless self.children.include?(child_node)
+    child_node.parent = self
   end 
+  
+  def remove_child(child_node)
+    if self.children.include?(child_node)
+      child_node.parent = nil
+    else 
+      raise_error "The child is not in the children"
+    end 
+  end 
+  
+  # def dfs(target)
+  #   return self if target == self
+  # end 
   
 end
