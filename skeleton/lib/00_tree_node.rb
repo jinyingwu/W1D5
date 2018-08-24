@@ -39,11 +39,14 @@ class PolyTreeNode
     return self if target == self.value
     self.children.each do |child|
       result = child.dfs(target) 
-      return result 
+      return result unless result.nil?
     end 
     nil 
   end 
   
+  def inspect 
+    "I am:#{self.value} with Children:#{self.children.map {|child| child.value}}"
+  end 
   
   
 end
