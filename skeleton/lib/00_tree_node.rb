@@ -31,8 +31,19 @@ class PolyTreeNode
     end 
   end 
   
-  # def dfs(target)
-  #   return self if target == self
-  # end 
+  def to_s 
+    "I am:#{self.value} with Children:#{self.children.map {|child| child.value}}"
+  end 
+  
+  def dfs(target)
+    return self if target == self.value
+    self.children.each do |child|
+      result = child.dfs(target) 
+      return result 
+    end 
+    nil 
+  end 
+  
+  
   
 end
