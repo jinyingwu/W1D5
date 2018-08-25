@@ -2,7 +2,9 @@ require_relative '00_tree_node'
 
 class KnightPathFinder
   def initialize(pos)
-    @move_tree = KnightPathFinder.build_move_tree
+    # @move_tree = KnightPathFinder.build_move_tree
+    @visited_position = [pos]
+    @root = nil
   end
   
   def self.root_node(pos)
@@ -22,6 +24,22 @@ class KnightPathFinder
       end   
     end 
     result
+  end 
+  
+  def new_move_position(pos_now)
+    all_moves = KnightPathFinder.valid_move(pos_now)
+    all_moves.reject! {|move| @visited_position.include?(move)}
+    @visited_position.concat(all_moves)
+    all_moves
+  end 
+  
+  def move_tree(pos)
+    queue = [pos.dup]
+    
+    until queue.empty?
+      root_pos = queue.shift
+      root = PolyTreeNode.new(root_pos)
+    end 
   end 
   
   
